@@ -1,1 +1,9 @@
-
+values:
+  api:
+    cep:
+      url: "https://viacep.com.br/ws/"
+    weather:
+      url: "https://api.openweathermap.org/data/2.5/weather?"
+  key:
+    openWeather: z8oUKIT+9WIHbr0ENp98W8rROGNpaH2wN7v36R/Z1gGDS4KxNHkSod28S72Y7NKT
+  lang: "pt_br"
