@@ -1,8 +1,11 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 import { API_URL } from "../../constants";
 
-export const axiosInstance = axios.create({
-    baseURL: API_URL,
-    timeout: 5000,
-    withCredentials: true
-})
+
+const axiosConfig = {
+  baseUrl: API_URL,
+  timeout: 5000,
+  withCredentials: true,
+};
+
+export const axiosInstance: AxiosInstance = axios.create(axiosConfig);
