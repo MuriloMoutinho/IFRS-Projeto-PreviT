@@ -7,10 +7,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 @Service
 public class GetWeatherNameCityService {
@@ -32,20 +36,21 @@ public class GetWeatherNameCityService {
                 name + "&units=metric&appid=" +
                 keyDecript + "&lang=" + langApp;
 
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.getForEntity(weatherUrl, String.class);
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<String> response = restTemplate.getForEntity(weatherUrl, String.class);
 
-        if (response.getStatusCode().is2xxSuccessful()) {
-            ObjectMapper objectMapper = new ObjectMapper();
-
-            try{
+            try {
+                ObjectMapper objectMapper = new ObjectMapper();
                 return objectMapper.readValue(response.getBody(), WeatherCity.class);
-            } catch (IOException e){
+
+            } catch (IOException e) {
                 throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Erro ao converter JSON");
             }
-
-        } else {
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Api fora do ar");
+        }catch (HttpClientErrorException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cidade não encontrada!");
+        } catch (HttpServerErrorException | ResourceAccessException e){
+            throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, "Api fora do ar!");
         }
 
     }
