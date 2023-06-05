@@ -1,9 +1,8 @@
 import axios, { AxiosInstance } from "axios";
 import { API_URL } from "../../constants";
 
-
 const axiosConfig = {
-  baseUrl: API_URL,
+  baseURL: API_URL,
   timeout: 5000,
   withCredentials: true,
 };

@@ -10,4 +10,3 @@ export const OBJECT_NOT_EMPTY_FORM = {
   validate: validateDataEmpty
 };
 
-export const OBJECT_EMPTY_FORM = { value: null, error: "" };

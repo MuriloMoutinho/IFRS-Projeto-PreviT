@@ -1,16 +1,20 @@
 import { useState } from "react";
+import { eventFunction } from "../ts/types";
+import { eventForm } from "../ts/types";
 
-interface inputsUseForm {
-  initialData: Record<string, any>,
-  onSubmit: () => void 
+interface IuseFormResponse {
+  onChangeData: (event: eventFunction) => void;
+  handleSubmit: (event: eventForm) => void;
+  formData: Record<string, any>;
 }
-type eventType = React.ChangeEvent<HTMLInputElement>
 
-
-export function useForm({ initialData, onSubmit }: inputsUseForm) {
+export function useForm(
+  initialData: Record<string, any>,
+  onSubmit: () => any
+): IuseFormResponse {
   const [formData, setFormData] = useState(initialData);
 
-  function onChangeData(event: eventType): void {
+  function onChangeData(event: eventFunction): void {
     const { name, value } = event.target;
 
     setFormData((oldFormData) => ({
@@ -26,7 +30,7 @@ export function useForm({ initialData, onSubmit }: inputsUseForm) {
     }));
   }
 
-  function handleSubmit(event: eventType): void  {
+  function handleSubmit(event: eventForm): void {
     event.preventDefault();
 
     const isFormError = Object.keys(formData).filter((key) => {

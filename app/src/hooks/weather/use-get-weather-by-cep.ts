@@ -2,14 +2,14 @@ import { useState } from "react";
 import { getWeatherByCep } from "../../api/weather/get-weather-by-cep";
 import { hookGetWeatherResponse } from "../../ts/types";
 
-interface IuseGetWeatherByCep {
+interface IuseGetWeatherByCepResponse {
     loading: boolean
     data: hookGetWeatherResponse
     get: (cep: number) => Promise<void>
     error: string | undefined
 }
 
-export function useGetWeatherByCep(): IuseGetWeatherByCep {
+export function useGetWeatherByCep(): IuseGetWeatherByCepResponse {
 
     const [data, setData] = useState<hookGetWeatherResponse>(undefined);
     const [loading, setLoading] = useState(true);

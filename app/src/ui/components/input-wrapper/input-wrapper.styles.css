@@ -1,0 +1,17 @@
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.label select,
+.label textarea,
+.label input {
+  padding: 8px;
+}
+
+.labelWidthFix {
+  width: 12em;
+}
