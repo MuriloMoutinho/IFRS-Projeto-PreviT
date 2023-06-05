@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  api:
+    container_name: api-java
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - api
+      - app
+
+  app:
+    container_name: app-react
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - app
+    depends_on:
+      - api
+
+networks:
+  api:
+  app:
