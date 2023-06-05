@@ -2,7 +2,7 @@ import "./input-wrapper.styles.css";
 import { ErrorMessage } from "../index";
 import { ReactNode } from "react";
 
-interface IInputWrapperRequest {
+interface IInputWrapperProps {
   className?: string
   textLabel: string
   error?: string
@@ -14,7 +14,7 @@ export function InputWrapper({
   className,
   textLabel,
   error,
-}: IInputWrapperRequest) {
+}: IInputWrapperProps): JSX.Element {
   const fullClassName = className ? `label ${className}` : "label";
 
   return (

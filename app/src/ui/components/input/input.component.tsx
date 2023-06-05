@@ -1,6 +1,6 @@
 import { eventFunction } from "../../../ts/types";
 
-interface IinputRequest {
+interface IinputProps {
   type: string;
   name: string;
   onChange: (event: eventFunction) => void ;
@@ -9,7 +9,7 @@ interface IinputRequest {
   className?: string;
 }
 
-export function Input({ type, name, onChange, placeholder, value, className }: IinputRequest) {
+export function Input({ type, name, onChange, placeholder, value, className }: IinputProps): JSX.Element {
   return (
     <input
       className={className}

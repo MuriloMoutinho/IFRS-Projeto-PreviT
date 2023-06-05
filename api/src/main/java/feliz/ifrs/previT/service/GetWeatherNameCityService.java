@@ -1,7 +1,9 @@
 package feliz.ifrs.previT.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import feliz.ifrs.previT.controller.responses.WeatherResponse;
 import feliz.ifrs.previT.domain.WeatherCity;
+import feliz.ifrs.previT.mapper.WeatherResponseMapper;
 import feliz.ifrs.previT.util.KeyEncryption;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -28,7 +30,7 @@ public class GetWeatherNameCityService {
     @Value("${values.lang}")
     private String langApp;
 
-    public WeatherCity get(String name) {
+    public WeatherResponse get(String name) {
 
         String keyDecript = KeyEncryption.decrypt(keyOpenWeather);
 
@@ -42,7 +44,8 @@ public class GetWeatherNameCityService {
 
             try {
                 ObjectMapper objectMapper = new ObjectMapper();
-                return objectMapper.readValue(response.getBody(), WeatherCity.class);
+                WeatherCity weatherCity = objectMapper.readValue(response.getBody(), WeatherCity.class);
+                return WeatherResponseMapper.toResponse(weatherCity);
 
             } catch (IOException e) {
                 throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Erro ao converter JSON");

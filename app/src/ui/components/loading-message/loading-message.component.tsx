@@ -1,10 +1,10 @@
 import "./loading-message.styles.css";
 import { ReactNode } from "react";
 
-interface ILoadingMessageRequest {
+interface ILoadingMessageProps {
   children: ReactNode
 }
 
-export function LoadingMessage({ children }: ILoadingMessageRequest) {
-  return children && <p className="loadingMessage">{children}</p>;
+export function LoadingMessage({ children }: ILoadingMessageProps): JSX.Element | null {
+  return children ? <p className="loadingMessage">{children}</p> : null;
 }

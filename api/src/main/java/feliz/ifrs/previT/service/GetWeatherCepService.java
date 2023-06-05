@@ -1,5 +1,6 @@
 package feliz.ifrs.previT.service;
 
+import feliz.ifrs.previT.controller.responses.WeatherResponse;
 import feliz.ifrs.previT.domain.Cep;
 import feliz.ifrs.previT.domain.WeatherCity;
 import feliz.ifrs.previT.service.Core.GetCepService;
@@ -15,7 +16,7 @@ public class GetWeatherCepService {
     @Autowired
     private GetWeatherNameCityService getWeatherNameCityService;
 
-    public WeatherCity get(String cep) {
+    public WeatherResponse get(String cep) {
        Cep cepEntity = getCepService.get(cep);
 
         return getWeatherNameCityService.get(cepEntity.getLocalidade());

@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { ReactNode } from "react";
 import { OBJECT_NOT_EMPTY_FORM } from "../../../constants/object-form";
-import { hasLetters } from "../../../helpers";
 import { useForm } from "../../../hooks/use-form.hook";
-import { useGetWeatherByCep } from "../../../hooks/weather/use-get-weather-by-cep";
-import { useGetWeatherByName } from "../../../hooks/weather/use-get-weather-by-name";
-import { Input, InputWrapper, Button } from "../../components";
-import { hookGetWeatherResponse } from "../../../ts/types";
+import { useGetWeather } from "../../../hooks/weather/use-get-weather";
+import {
+  Input,
+  InputWrapper,
+  Button,
+  CardWeather,
+  LoadingMessage,
+  ErrorMessage,
+} from "../../components";
 
 export function HomeScreen() {
-  const getWeatherName = useGetWeatherByName();
-  const getWeatherCep = useGetWeatherByCep();
-  const [weatherFinal, setWeatherFinal] = useState<hookGetWeatherResponse>(undefined);
+  const getWeather = useGetWeather();
 
   const innitialData = {
     term: { ...OBJECT_NOT_EMPTY_FORM },
@@ -21,13 +23,34 @@ export function HomeScreen() {
   );
 
   async function submit(): Promise<void> {
-    if(hasLetters(formData.term.value)){
-      await getWeatherName.get(formData.term.value)
-      setWeatherFinal(getWeatherName.data)
-    }else {
-      await getWeatherCep.get(Number(formData.term.value));
-      setWeatherFinal(getWeatherCep.data)
-    }
+    await getWeather.get(formData.term.value);
+  }
+
+  function renderCardWeather(): ReactNode {
+    if (getWeather.loading)
+      return <LoadingMessage>Carregando clima</LoadingMessage>;
+    if (getWeather.error)
+      return <ErrorMessage>{getWeather.error}</ErrorMessage>;
+
+    if (!getWeather.data)
+      return <ErrorMessage>"Ocorreu um erro ao obter o clima"</ErrorMessage>;
+
+    return (
+      <CardWeather
+        longitude={getWeather.data.longitude}
+        latitude={getWeather.data.latitude}
+        description={getWeather.data.weather}
+        temperature={getWeather.data.temperature}
+        feelsLike={getWeather.data.feelsLike}
+        temperatureMin={getWeather.data.temperatureMin}
+        temperatureMax={getWeather.data.temperatureMax}
+        pressure={getWeather.data.pressure}
+        humidity={getWeather.data.humidity}
+        windSpeed={getWeather.data.windSpeed}
+        name={getWeather.data.name}
+        country={getWeather.data.country}
+      />
+    );
   }
 
   return (
@@ -44,9 +67,12 @@ export function HomeScreen() {
             onChange={onChangeData}
             value={formData.term.value}
           ></Input>
-          <Button>Enviar</Button>
         </InputWrapper>
+
+        <Button>Enviar</Button>
       </form>
+
+      {renderCardWeather()}
     </main>
   );
 }
