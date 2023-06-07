@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relatório Frameworks</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link href="prism.css" rel="stylesheet" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body class="body">
+    <header class="header">
+      <h1>Relatório sobre Frameworks</h1>
+    </header>
+    <section class="container">
+      <h2>O que são Frameworks e para que são utilizados?</h2>
+      <p>
+        Um framework é um conjunto de bibliotecas que tratam de funções e
+        frameworks de desenvolvimento de aplicações para fornecer soluções para
+        o mesmo domínio de problema, permitindo que seu código seja reutilizado.
+        Assim, através de diferentes linguagens de programação, são criados e
+        identificados frameworks com metodologias, propósitos e implementações
+        para os quais diferentes tipos de aplicações, principalmente orientadas
+        a objetos, poderão reaproveitar suas estruturas e códigos.
+      </p>
+      <p>
+        Um framework é um conjunto de classes implementadas em uma determinada
+        linguagem de programação que fornece recursos comuns prontos, validados
+        e testados que podem ser usados para dar suporte ao desenvolvimento de
+        software, permitindo maior eficiência na resolução de problemas,
+        otimização de recursos e detecção de erros.
+      </p>
+      <p>
+        Ele fornece um modelo de dados, usado para resolver um determinado
+        problema, abstraindo parte do código da solução com a qual estamos
+        lidando. Especificamente, na programação orientada a objetos, o
+        Framework é um conjunto de classes e interfaces, com o objetivo de
+        reaproveitar a arquitetura de software, é composto por objetos mapeando
+        suas responsabilidades, que através de uma interface com um fluxo de
+        controle definido permitirá a interação com aplicações, ou seja,
+        orientará a solução de um domínio específico.
+      </p>
+    </section>
+    <section class="container">
+      <h2>
+        Liste 4 Frameworks utilizados para programação Web selecionados por
+        você, um para cada linguagem (Python, Java, PHP e Javascript). Descreva
+        estes frameworks segundo seus propósitos e diferencial.
+      </h2>
+      <div>
+        <h3>Python: Flask</h3>
+        <p>
+          O principal objetivo do framework é prover um modelo simples para
+          desenvolvimento web, ao mesmo tempo que tem a flexibilidade no uso da
+          linguagem Python. Não possui camada de abstração de banco de dados,
+          validação de formulários ou mesmo qualquer outro componente, no
+          entanto bibliotecas de terceiros provêm essas funcionalidades.
+        </p>
+        <pre class="pre">
+<code class="language-python">
+from flask import Flask
+app = Flask(__name__)
+@app.route("/")
+def hello_world():
+  return "Hello, World!"
+</code>  
+        </pre>
+        <ul>
+          <li>
+            <code>from flask import Flask</code> importa a classe Flask do
+            módulo flask.
+          </li>
+          <li>
+            <code>app = Flask(__name__)</code> cria uma instância da classe
+            Flask e a atribui à variável app.
+          </li>
+          <li>
+            <code>__name__</code> é uma variável especial que representa o nome
+            do módulo atual.
+          </li>
+          <li>
+            <code>@app.route("/")</code> mapeia a função
+            <code>hello_world()</code> para a rota raiz ("/") da aplicação
+            Flask.
+          </li>
+          <li>
+            <code>def hello_world():</code> define a função
+            <code>hello_world()</code>, que é a função de retorno de chamada
+            para a rota raiz.
+          </li>
+          <li>
+            <code>return "Hello, World!</code>" é a resposta retornada pela
+            função
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3>Java: Spring</h3>
+        <p>
+          O Spring é um framework Java criado com o objetivo de facilitar o
+          desenvolvimento de aplicações, explorando, para isso, os conceitos de
+          Inversão de Controle e Injeção de Dependências. Dessa forma, ao
+          adotá-lo, temos à nossa disposição uma tecnologia que nos fornece não
+          apenas recursos necessários à grande parte das aplicações, como
+          módulos para persistência de dados, integração, segurança, testes,
+          desenvolvimento web, como também um conceito a seguir que nos permite
+          criar soluções menos acopladas, mais coesas e, consequentemente, mais
+          fáceis de compreender e manter.
+        </p>
+        <pre class="pre">
+<code class="language-java">
+@SpringBootApplication
+@RestController
+public class DemoApplication {
+  @GetMapping("/helloworld")
+    public String hello() {
+    return"Hello World!";
+  }
+}
+</code>
+        </pre>
+        <ul>
+          <li>
+            <code>@SpringBootApplication:</code> Essa anotação é usada para
+            marcar a classe como uma classe de inicialização do Spring Boot.
+          </li>
+          <li>
+            <code>@RestController:</code> Essa anotação é usada para marcar a
+            classe como um controlador do Spring MVC que lida com solicitações
+            HTTP e retorna respostas HTTP.
+          </li>
+          <li>
+            <code>public class DemoApplication:</code> Esta é a classe principal
+            do aplicativo, que contém o método main para iniciar o aplicativo
+            Spring Boot.
+          </li>
+          <li>
+            <code>@GetMapping("/helloworld"):</code> Essa anotação é usada para
+            mapear o método <code>hello()</code> ao endpoint
+            <code>"/helloworld"</code> com o método HTTP GET.
+          </li>
+          <li>
+            <code>public String hello():</code> Este é o método que será
+            executado quando o endpoint <code>"/helloworld"</code> for acessado.
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3>PHP: Laravel</h3>
+        <p>
+          Laravel é um Framework PHP utilizado para o desenvolvimento web, que
+          utiliza a arquitetura MVC e tem como principal característica ajudar a
+          desenvolver aplicações seguras e performáticas de forma rápida, com
+          código limpo e simples, já que ele incentiva o uso de boas práticas de
+          programação e utiliza o padrão PSR-2 como guia para estilo de escrita
+          do código.
+        </p>
+        <pre class="pre">
+<code class="language-php">
+&lt;?php
+Route::get('/users/{user}', function (User $user) {
+  return $user;
+});
+</code>
+        </pre>
+        <ul>
+          <li>
+            <code>Route::get('/users/{user}', ...)</code> define uma rota GET
+            para o caminho <code>"/users/{user}"</code>.
+          </li>
+          <li>
+            O <code>{user}</code> é um parâmetro de rota que pode receber um
+            valor dinâmico. Ele será passado como argumento para a função de
+            callback.
+          </li>
+          <li>
+            A função de callback é definida usando
+            <code>function (User $user) { ...}</code> Ela recebe um objeto User
+            como argumento.
+          </li>
+          <li>
+            Dentro da função de callback, o código simplesmente retorna o objeto
+            User como resposta HTTP.
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3>Javascript: React</h3>
+        <p>
+          React é um framework JavaScript criado pelo Facebook (atual Meta) que
+          é usado para criar interfaces de usuário (UI) em aplicativos web. Ele
+          é popular por ser fácil de usar, altamente flexível e escalável, e é
+          usado por muitas empresas de tecnologia, incluindo o Facebook,
+          Instagram e Airbnb.
+        </p>
+        <pre class="pre">
+<code class="language-JavaScript">
+export default function MyApp() {
+  return (
+  &lt;div>
+  &lt;h1>Welcome to my app&lt;/h1>
+  &lt;MyButton />
+  &lt;/div>
+  );
+}
+</code>
+        </pre>
+        <ul>
+          <li>
+            <code>export default</code> é uma instrução que exporta o componente
+            de função como o valor padrão para que ele possa ser importado e
+            usado em outros arquivos.
+          </li>
+          <li>
+            <code>function MyApp()</code> define uma função chamada MyApp, que é
+            um componente React de função.
+          </li>
+          <li>
+            A função retorna JSX (JavaScript XML), que é uma sintaxe semelhante
+            a HTML usada para definir a estrutura e o conteúdo do componente.
+          </li>
+          <li>
+            O JSX contém um elemento <code>&lt;div></code> que envolve um
+            elemento <code>&lt;h1></code> com o texto "Welcome to my app" é um
+            componente <code>&lt;MyButton /></code>.
+          </li>
+          <li>
+            <MyButton /> é uma instância de um componente chamado MyButton.
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="container">
+      <h2>
+        Crie um projeto bastante simples utilizado um dos frameworks
+        pesquisados. Submeta o código do seu projeto para o GitHub ou outro
+        portal de Git e disponibilize no relatório o link público para o
+        repositório. O repositório deve incluir um arquivo de README.md
+        descrevendo os procedimentos básicos para executar o projeto.
+      </h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor quidem
+        provident, tempora, consequatur facilis voluptas excepturi dolores
+        assumenda unde aspernatur labore odit! Eveniet, pariatur deleniti
+        distinctio architecto sapiente quo illo.
+      </p>
+      <a href="https://github.com/MuriloMoutinho/IFRS-Projeto-Previsao-Tempo"
+        >IFRS-Projeto-Previsao-Tempo</a
+      >
+    </section>
+    <footer class="footer">
+      <span>Integrantes: Fábio Bastian e Murilo Moutinho</span>
+      <span>Turma: 4 TI</span>
+    </footer>
+    <script src="prism.js"></script>
+  </body>
+</html>
