@@ -10,7 +10,7 @@ O projeto foi construído juntamente com um relatório sobre frameworks, onde s�
 
 ## ▶️ Execução
 
-Para subir o projeto como um todo, é necessário, em um ambiente Linux, possuir o Docker Compose. É possível instalá-lo com o comando: `sudo apt-get install docker-compose-plugin`. Após ter o Docker Compose instalado, basta executar o comando `docker compose up`.
+Para subir o projeto como um todo, é necessário, em um ambiente Linux, possuir o Docker Compose. É possível instalá-lo com o comando: `sudo apt-get install docker-compose-plugin`. Após ter o Docker Compose instalado, basta executar o comando `sudo service docker start`, e em seguida `docker compose up`.
 
 ## 🛠️ Tecnologias
 
