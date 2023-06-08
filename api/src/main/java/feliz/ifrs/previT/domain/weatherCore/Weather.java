@@ -9,5 +9,6 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Weather {
     private String description;
+    private String main;
 
 }

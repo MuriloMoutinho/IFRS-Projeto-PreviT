@@ -12,6 +12,7 @@ public class WeatherResponse {
     private double longitude;
     private double latitude;
     private String weather;
+    private String description;
     private double temperature;
     private double feelsLike;
     private double temperatureMin;

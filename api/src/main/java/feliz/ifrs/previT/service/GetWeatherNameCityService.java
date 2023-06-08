@@ -16,7 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
-import java.net.UnknownHostException;
+
 
 @Service
 public class GetWeatherNameCityService {

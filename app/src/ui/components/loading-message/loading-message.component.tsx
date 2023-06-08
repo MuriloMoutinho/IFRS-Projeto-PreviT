@@ -1,10 +1,6 @@
-import { ReactNode } from "react";
-import { LoadingMessageStyle } from "./loading-message.styles";
+import { LoadingImageStyle } from "./loading-message.styles";
+import { LoadingIcon } from "../../../assets";
 
-interface ILoadingMessageProps {
-  children: ReactNode
-}
-
-export function LoadingMessage({ children }: ILoadingMessageProps): JSX.Element | null {
-  return children ? <LoadingMessageStyle>{children}</LoadingMessageStyle> : null;
+export function LoadingMessage(): JSX.Element {
+  return <LoadingImageStyle src={LoadingIcon} alt="Simbolo carregamento" />;
 }

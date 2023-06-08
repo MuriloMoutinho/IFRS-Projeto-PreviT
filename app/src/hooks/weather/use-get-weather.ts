@@ -16,10 +16,10 @@ interface IuseGetWeatherResponse {
 
 export function useGetWeather(): IuseGetWeatherResponse {
   const [data, setData] = useState<hookGetWeatherResponse>(undefined);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [call, setCall] = useState(false);
   const [error, setError] = useState<string | undefined>();
-
+  
   async function get(term: string): Promise<void> {
     try {
       setCall(true);

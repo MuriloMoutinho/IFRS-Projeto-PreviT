@@ -1,6 +1,15 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-export const LoadingMessageStyle = styled.p`
-  font-size: 1em;
-  color: white;
+const rotateAnimation = keyframes`
+  from {
+    transform: rotate(0deg);
+  } 
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const LoadingImageStyle = styled.img`
+  width: 4em;
+  animation: ${rotateAnimation} 2s infinite linear;
 `;

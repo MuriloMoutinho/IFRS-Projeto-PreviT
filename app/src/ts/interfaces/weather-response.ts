@@ -2,6 +2,7 @@ export interface IWeatherResponse {
   longitude: number;
   latitude: number;
   weather: string;
+  description: string;
   temperature: number;
   feelsLike: number;
   temperatureMin: number;
