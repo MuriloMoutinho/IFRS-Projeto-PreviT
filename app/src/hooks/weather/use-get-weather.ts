@@ -11,15 +11,18 @@ interface IuseGetWeatherResponse {
   data: hookGetWeatherResponse;
   get: (name: string) => Promise<void>;
   error: string | undefined;
+  call: boolean
 }
 
 export function useGetWeather(): IuseGetWeatherResponse {
   const [data, setData] = useState<hookGetWeatherResponse>(undefined);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [call, setCall] = useState(false);
   const [error, setError] = useState<string | undefined>();
 
   async function get(term: string): Promise<void> {
     try {
+      setCall(true);
       let response: AxiosResponse<IWeatherResponse>;
 
       hasLetters(term)
@@ -29,12 +32,11 @@ export function useGetWeather(): IuseGetWeatherResponse {
       setError(undefined);
       setData(response.data);
     } catch (error) {
-      console.log(error);
       setError("Ocorreu um erro");
     } finally {
       setLoading(false);
     }
   }
 
-  return { get, loading, data, error };
+  return { get, loading, data, error, call };
 }

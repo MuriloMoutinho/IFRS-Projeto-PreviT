@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { OBJECT_NOT_EMPTY_FORM } from "../../../constants/object-form";
-import { useForm } from "../../../hooks/use-form.hook";
-import { useGetWeather } from "../../../hooks/weather/use-get-weather";
+import { useForm, useGetWeather } from "../../../hooks";
+import * as S from "./home.styles"
 import {
   Input,
   InputWrapper,
@@ -10,7 +10,6 @@ import {
   LoadingMessage,
   ErrorMessage,
 } from "../../components";
-
 export function HomeScreen() {
   const getWeather = useGetWeather();
 
@@ -27,6 +26,7 @@ export function HomeScreen() {
   }
 
   function renderCardWeather(): ReactNode {
+    if (getWeather.call) return;
     if (getWeather.loading)
       return <LoadingMessage>Carregando clima</LoadingMessage>;
     if (getWeather.error)
@@ -56,7 +56,7 @@ export function HomeScreen() {
   return (
     <main>
       <h1>PreviT</h1>
-      <form onSubmit={handleSubmit}>
+      <S.FormStyle onSubmit={handleSubmit}>
         <InputWrapper
           textLabel="Insira o nome ou o CEP da sua cidade:"
           error={formData.term.error}
@@ -70,7 +70,7 @@ export function HomeScreen() {
         </InputWrapper>
 
         <Button>Enviar</Button>
-      </form>
+      </S.FormStyle>
 
       {renderCardWeather()}
     </main>
