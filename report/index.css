@@ -50,7 +50,9 @@ ul {
 }
 
 a {
-  margin: 1em 0em;
+  display: block;
+  text-align: center;
+  margin: 2em 0em 1em 0em;
   font-size: large;
   color: #ffffffb3;
 }
